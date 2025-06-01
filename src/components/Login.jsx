@@ -2,17 +2,23 @@ import React, { useState } from "react";
 import { AppContext } from "../App";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 export default function Login() {
   const { users, user, setUser } = useContext(AppContext);
   const [msg, setMsg] = useState();
   const Navigate = useNavigate();
-  const handleSubmit = () => {
-    const found = users.find(
-      (value) => value.email === user.email && value.pass === user.pass
-    );
-    if (found) {
+  const API = import.meta.env.VITE_API_URL;
+  const handleSubmit = async () => {
+    // const found = users.find(
+    //   (value) => value.email === user.email && value.pass === user.pass
+    // );
+    const url = `${API}/login`;
+    const found = await axios.post(url, user);
+    console.log(found.name);
+    if (found.name) {
       setMsg("Welcome " + found.name);
-      setUser({ ...user, name: found.name, token: "123" });
+
+      setUser(found);
       Navigate("/");
     } else {
       setMsg("Invalid User or Password");
