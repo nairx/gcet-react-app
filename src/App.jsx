@@ -7,7 +7,9 @@ import Cart from "./components/Cart";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Logout from "./components/Logout";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createContext } from "react";
 export const AppContext = createContext();
 function App() {
@@ -17,32 +19,16 @@ function App() {
     <div>
       <AppContext.Provider value={{ users, setUsers, user, setUser }}>
         <BrowserRouter>
-          <header>
-            <h1>My Online Shop</h1>
-            <Link to="/">Home</Link>-<Link to="/cart">Cart</Link>-
-            {user.token ? (
-              <Link to="/logout">Logout</Link>
-            ) : (
-              <Link to="/login">Login</Link>
-            )}
-            <hr />
-          </header>
-
-          <main>
-            <Routes>
-              <Route index element={<Product />} />
-              <Route path="/" element={<Product />}></Route>
-              <Route path="/cart" element={<Cart />}></Route>
-              <Route path="/login" element={<Login />}></Route>
-               <Route path="/logout" element={<Logout />}></Route>
-              <Route path="/register" element={<Register />}></Route>
-            </Routes>
-          </main>
-
-          <footer>
-            <hr />
-            &copy; 2005. All rights Reserved.
-          </footer>
+          <Header />
+          <Routes>
+            <Route index element={<Product />} />
+            <Route path="/" element={<Product />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/logout" element={<Logout />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+          </Routes>
+          <Footer />
         </BrowserRouter>
       </AppContext.Provider>
     </div>
