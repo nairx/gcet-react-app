@@ -5,7 +5,7 @@ export default function Product() {
   const {user} = useContext(AppContext)
   return (
     <div>
-      <h3>Welcome!</h3>
+      <h3>Welcome {user.name}! </h3>
       Product List
       </div>
   )
