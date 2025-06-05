@@ -12,7 +12,7 @@ export default function Login() {
     // const found = users.find(
     //   (value) => value.email === user.email && value.pass === user.pass
     // );
-    const url = `${API}/login`;
+    const url = `${API}/users/login`;
     const found = await axios.post(url, user);
     if (found.data.token) {
       setUser(found.data);
