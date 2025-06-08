@@ -10,7 +10,10 @@ export default function Header() {
       <Link to="/">Home</Link>-<Link to="/cart">Cart</Link>-
       <Link to="/order">Order</Link>-
       {user.token ? (
-        <Link to="/logout">Logout</Link>
+        <>
+          {user.role === "admin" && <Link to="/admin">Admin</Link>}-
+          <Link to="/logout">Logout</Link>
+        </>
       ) : (
         <Link to="/login">Login</Link>
       )}
