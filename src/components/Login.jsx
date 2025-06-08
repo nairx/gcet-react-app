@@ -14,10 +14,9 @@ export default function Login() {
     // );
     const url = `${API}/users/login`;
     const found = await axios.post(url, user);
-    console.log(found)
 
-    if (found.data.email) {
-      setUser(found.data);
+    if (found.data.token) {
+      setUser({...found.data.result,token:found.data.token});
       Navigate("/");
     } else {
       setMsg("Invalid User or Password");
